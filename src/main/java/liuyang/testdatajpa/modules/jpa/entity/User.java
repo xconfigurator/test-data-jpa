@@ -1,5 +1,9 @@
 package liuyang.testdatajpa.modules.jpa.entity;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +15,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="user")
+@Data
+@ToString
+@EqualsAndHashCode
 public class User implements Serializable {
     /**
      * 主键ID
@@ -38,59 +45,60 @@ public class User implements Serializable {
     /**
      * 主键ID
      */
-    public Long getId() {
+    /*public Long getId() {
         return id;
-    }
+    }*/
 
     /**
      * 主键ID
      */
-    public void setId(Long id) {
+    /*public void setId(Long id) {
         this.id = id;
-    }
+    }*/
 
     /**
      * 姓名
      */
-    public String getName() {
+    /*public String getName() {
         return name;
-    }
+    }*/
 
     /**
      * 姓名
      */
-    public void setName(String name) {
+    /*public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     /**
      * 年龄
      */
-    public Integer getAge() {
+    /*public Integer getAge() {
         return age;
-    }
+    }*/
 
     /**
      * 年龄
      */
-    public void setAge(Integer age) {
+    /*public void setAge(Integer age) {
         this.age = age;
-    }
+    }*/
 
     /**
      * 邮箱
      */
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
-    }
+    }*/
 
     /**
      * 邮箱
      */
-    public void setEmail(String email) {
+    /*public void setEmail(String email) {
         this.email = email;
-    }
+    }*/
 
+/*
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -133,5 +141,5 @@ public class User implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
-    }
+    }*/
 }
