@@ -8,3 +8,7 @@ spring:
     hibernate:
       ddl-auto: none # update
     show-sql: true
+    # 实测有效！！ 202106181110
+    properties:
+      hibernate:
+        format_sql: true
