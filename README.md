@@ -1,6 +1,7 @@
 # Spring Data JPA 脚手架
 > 初步目标(2021)不做过多订制，就看看Java操纵数据能到多简单。更详细的操纵参考MyBatis-Plus方案。
 感慨一下，IntelliJ IDEA果然是个可爱的工具！
+[参考视频 黑马](https://www.bilibili.com/video/BV1fh411Z7Wd)
 
 ## 初始化项目
 ```shell
