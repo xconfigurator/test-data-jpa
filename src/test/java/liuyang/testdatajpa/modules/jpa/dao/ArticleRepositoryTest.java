@@ -168,11 +168,6 @@ public class ArticleRepositoryTest {
         articleRepository.findByCreateTimeAfter(new SimpleDateFormat("yyyy-MM-dd").parse("2021-06-01")).stream().forEach(System.out::println);
     }
 
-    @Test
-    void testQuery() {
-
-    }
-
     /////////////////////////////////////////////////////////////
     // Query 2 JPQL @Query("")
     // TODO 暂缓
