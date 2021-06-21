@@ -115,7 +115,7 @@ public class ArticleRepositoryTest {
         list.stream().forEach(System.out::println);
     }
 
-    @Test
+    @Test // 带条件的查询可以考虑使用JPQL （见testQueryJPQL/findByJPQL05）
     void testQueryFindAllPageable() {
         // 仅分页
         //Pageable pageable = PageRequest.of(1, 4);
@@ -150,7 +150,7 @@ public class ArticleRepositoryTest {
     /////////////////////////////////////////////////////////////
     // Query 2 方法命名规则查询 定义在ArticleRepository接口中
     @Test
-    void testQueryDefineMethodName() throws ParseException {
+    void testQueryMethodNamingRules() throws ParseException {
         log.info("#### findByTitle");
         articleRepository.findByTitle("《刷题一百遍》").stream().forEach(System.out::println);
         log.info("#### findByAidIn");
@@ -169,12 +169,37 @@ public class ArticleRepositoryTest {
     }
 
     /////////////////////////////////////////////////////////////
-    // Query 2 JPQL @Query("")
-    // TODO 暂缓
+    // Query 3 JPQL @Query("")
+    // 文字教程 https://www.yiibai.com/jpa/jpa-jpql-introduction.html
+    // 应用场景：
+    //  当方法命名规则不太方便的时候，比如查询参数比较多的情况。
+    //  当传入的参数是一个实体对象
+    @Test
+    void testQueryJPQL() {
+        log.info("#### 展示位置参数绑定");
+        articleRepository.findByJPQL01("liuyang1", "《刷题一百遍》").stream().forEach(System.out::println);
+        log.info("#### 展示名字参数绑定");
+        articleRepository.findByJPQL02("liuyang1", "《刷题一百遍》").stream().forEach(System.out::println);
+        log.info("#### 展示like模糊查询");
+        articleRepository.findByJPQL03("刷题").stream().forEach(System.out::println);
+        log.info("#### 展示排序查询");
+        articleRepository.findByJPQL04("刷题").stream().forEach(System.out::println);
+        log.info("#### 展示分页查询");
+        Pageable pageable = PageRequest.of(0, 4, Sort.by(Sort.Order.desc("aid")));
+        articleRepository.findByJPQL05("刷题", pageable).stream().forEach(System.out::println);
+        log.info("#### 展示传入集合参数查询");
+        articleRepository.findByJPQL06(Arrays.asList(11, 12, 13, 14, 15)).stream().forEach(System.out::println);
+        log.info("#### 展示传入Bean进行查询(SPEL表达式查询) （这点方法命名规则查询做不到！！）");
+        Article article = new Article();
+        article.setAuthor("liuyang1");
+        article.setTitle("《刷题一百遍》");
+        articleRepository.findByJPQL07(article).stream().forEach(System.out::println);
+    }
 
     /////////////////////////////////////////////////////////////
     // Query 4 Native SQL @Query("", nativeQuery=true)
-    // TODO 暂缓
+    // 略
+    // 应用场景:DB2 Oracle的统计函数，PostgreSQL的gis函数等等......
 
     /////////////////////////////////////////////////////////////
     // Query 5 JpaSpecificationExecutor动态查询
