@@ -21,7 +21,7 @@ import java.util.*;
 @Entity
 @Table(name = "rarticle")
 @Data
-@ToString(exclude = {"rArticleData", "commentList", "categories"})
+@ToString(exclude = {"rArticleData", "commentList", "categoryList"})
 @EqualsAndHashCode // 注意：必须加上exclude = "rArticleData"，否则会StackOverflowError
 public class RArticle {
     @Id

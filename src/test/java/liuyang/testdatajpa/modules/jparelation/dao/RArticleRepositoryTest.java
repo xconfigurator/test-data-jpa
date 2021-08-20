@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -128,7 +129,7 @@ public class RArticleRepositoryTest {
 
     @Test
     void testSelect() {
-        Optional<RArticle> optionalRArticle = rArticleRepository.findById(3);// 注意lazy的时候可能还会有点问题。
+        Optional<RArticle> optionalRArticle = rArticleRepository.findById(1);// 注意lazy的时候可能还会有点问题。
         if (optionalRArticle.isPresent()) {
             log.info(optionalRArticle.get().getAuthor());
             log.info(optionalRArticle.get().getTitle());

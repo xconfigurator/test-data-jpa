@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * null
@@ -23,6 +21,7 @@ public class User implements Serializable {
      * 主键ID
      */
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO) // 由程序控制生成的主键 默认选项
     private Long id;
 
     /**
