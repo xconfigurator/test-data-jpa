@@ -60,13 +60,23 @@ public class UserRepositoryTest {
         userRepository.findAll().stream().forEach(System.out::println);
     }
 
-    //@Test
     @ParameterizedTest
-    @ValueSource(longs = {4, 6})
+    @ValueSource(longs = {1428543417356521472l, 1428543417402658816l})
     void testFindById(Long id) {
         //TimeZone tz = TimeZone.getTimeZone("Asia/Shanghai");
         Optional<User> result = userRepository.findById(id);
         log.info(result.isPresent() ? result.get().toString() : "none!");
+    }
+
+    @ParameterizedTest
+    @ValueSource(longs = {1428543417356521472l, 1428543417402658816l})
+    void testUpdate(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setName("liuyang");
+            userRepository.save(user);
+        }
     }
 
     @Test

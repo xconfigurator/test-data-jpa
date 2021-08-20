@@ -16,6 +16,7 @@ import java.util.*;
 public interface ArticleRepository extends JpaRepository<Article, Integer>, JpaSpecificationExecutor<Article> {
     /////////////////////////////////////////////////////////////
     // Query 2 方法命名规则查询 定义在ArticleRepository接口中
+    // 文字教程：https://blog.csdn.net/je_ge/article/details/53294949
     // Idea的提示相当神奇！！
 
     // 根据标题查询
