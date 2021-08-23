@@ -42,17 +42,21 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>, JpaS
     // 应用场景：
     // 1. 当方法命名规则不太方便的时候，比如查询参数比较多的情况。
     // 2. 当传入的参数是一个实体对象
-    // 展示位置参数绑定 占位符从1开始！！！！
+    // 注意：展示位置参数绑定 占位符从1开始！！！！
     @Query("from Article a where a.author = ?1 and a.title = ?2")
     List<Article> findByJPQL01(String author, String title);
 
     // 展示名字参数绑定
+    // 搞不清下标的情况下，使用参数绑定更稳妥。
+    // :author @Param("author")
     @Query("from Article a where a.author = :author and a.title = :title")
     List<Article> findByJPQL02(@Param("author") String author
             ,@Param("title") String title);
 
     // 展示like模糊查询
-    @Query("from Article a where a.title like %:title%")
+    //@Query("from Article a where a.title like %:title%")// OK
+    //@Query("from Article a where a.title like :title%")// OK 202108231200
+    @Query("from Article a where a.title like %:title")// OK 202108231201
     List<Article> findByJPQL03(@Param("title") String title);
 
     // 展示排序查询
@@ -69,6 +73,15 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>, JpaS
     List<Article> findByJPQL06(@Param("aids") Collection<Integer> aids);
 
     // 展示传入Bean进行查询(SPEL表达式查询) （这点方法命名规则查询做不到！！）
+    // :#{}
+    // #obj.property
     @Query("from Article a where a.title = :#{#article.title} and a.author = :#{#article.author}")
     List<Article> findByJPQL07(@Param("article") Article article);
+
+    /////////////////////////////////////////////////////////////
+    // Query 4 Native SQL JPQL @Query("")
+    // @Query(value = "", nativeQuery = true)
+    @Query(value = "select * from article a where a.title = :title and a.author = :author", nativeQuery = true)
+    List<Article> findByNativeSQL(@Param("title") String title, @Param("author") String author);
+
 }

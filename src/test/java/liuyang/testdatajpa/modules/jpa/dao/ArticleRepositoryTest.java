@@ -176,9 +176,9 @@ public class ArticleRepositoryTest {
     //  当传入的参数是一个实体对象
     @Test
     void testQueryJPQL() {
-        log.info("#### 展示位置参数绑定");
+        log.info("#### 展示位置参数绑定 注意：JPQL占位符很特殊 下标从1开始。");
         articleRepository.findByJPQL01("liuyang1", "《刷题一百遍》").stream().forEach(System.out::println);
-        log.info("#### 展示名字参数绑定");
+        log.info("#### 展示名字参数绑定 说明：如果下标搞不清楚，则使用参数绑定更稳妥");
         articleRepository.findByJPQL02("liuyang1", "《刷题一百遍》").stream().forEach(System.out::println);
         log.info("#### 展示like模糊查询");
         articleRepository.findByJPQL03("刷题").stream().forEach(System.out::println);
@@ -200,6 +200,10 @@ public class ArticleRepositoryTest {
     // Query 4 Native SQL @Query("", nativeQuery=true)
     // 略
     // 应用场景:DB2 Oracle的统计函数，PostgreSQL的gis函数等等......
+    @Test
+    void testFindByNativeSQL() {
+        articleRepository.findByNativeSQL("《刷题一百遍》", "liuyang1").stream().forEach(System.out::println);
+    }
 
     /////////////////////////////////////////////////////////////
     // Query 5 JpaSpecificationExecutor动态查询
