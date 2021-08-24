@@ -42,7 +42,7 @@ public class UserRepositoryTest {
         user.setAge(age);
         user.setEmail("xconfiguration@hotmail.com");
         userRepository.save(user);
-}
+    }
 
     @Test
     void testSave() {
