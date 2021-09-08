@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -27,4 +28,10 @@ public class Article {
     private Date createTime;
 
     private String title;
+
+    private Long fooLong;
+
+    private Double fooDouble;
+
+    private BigDecimal foolBigDecimal;
 }
