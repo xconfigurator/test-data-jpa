@@ -24,8 +24,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
+ * 参考视频
+ * 1. 黑马 基本使用方法
+ *  https://www.bilibili.com/video/BV1fh411Z7Wd?p=16
+ * 2. 徐庶 补充了黑马没有详细讲解的动态条件查询示例
+ *  Query by Example
+ *  Query DSL
+ *  Specifications
+ *  https://www.bilibili.com/video/BV15q4y1w7vu?p=17&spm_id_from=pageDriver
+ *
  * @author liuyang
  * @scine 2021/6/18
+ * @update 2022/4/9 补充动态条件查询视频资源
  */
 @SpringBootTest
 @Slf4j
@@ -157,7 +167,7 @@ public class ArticleRepositoryTest {
         articleRepository.findByAidIn(Arrays.asList(11, 12, 13, 14, 15)).stream().forEach(System.out::println);
 
         log.info("#### findByTitleLike");
-        articleRepository.findByTitleLike("%刷题%").stream().forEach(System.out::println);
+        articleRepository.findByTitleLike("%刷题%").stream().forEach(System.out::println);// 注意到%由自己控制。
         log.info("#### findByTitleAndAuthor");
         articleRepository.findByTitleAndAuthor("《刷题一百遍》", "liuyang1").stream().forEach(System.out::println);
         log.info("#### findByAidBetween");
@@ -208,7 +218,10 @@ public class ArticleRepositoryTest {
     /////////////////////////////////////////////////////////////
     // Query 5 JpaSpecificationExecutor动态查询
     // 这个时候不该看JpaRepository了, 应该看JpaSpecificationExecutor
+    // 主要操纵：CriteriaBuilder, Predicate
     // 对比MyBatis-Plus的QueryWrapper,LambdaQueryWrapper
+    // 参考视频1：https://www.bilibili.com/video/BV1fh411Z7Wd?p=22
+    // 参考视频2：https://www.bilibili.com/video/BV15q4y1w7vu?p=19&spm_id_from=pageDriver （徐庶这里讲得更清楚）
     //@Test
     @ParameterizedTest
     @CsvSource({",", ",《刷题一百遍》", "liuyang1,", "liuyang1,《刷题一百遍》"})

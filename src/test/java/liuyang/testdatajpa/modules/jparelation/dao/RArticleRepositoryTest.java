@@ -1,19 +1,14 @@
 package liuyang.testdatajpa.modules.jparelation.dao;
 
-import liuyang.testdatajpa.modules.jpa.entity.Article;
 import liuyang.testdatajpa.modules.jparelation.entity.RArticle;
 import liuyang.testdatajpa.modules.jparelation.entity.RArticleCategory;
 import liuyang.testdatajpa.modules.jparelation.entity.RArticleComment;
 import liuyang.testdatajpa.modules.jparelation.entity.RArticleData;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.attribute.RecordComponentAttributeAppender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
